@@ -1,3 +1,3 @@
-setTimeout(() => {
-  console.log("test");
-}, 1000);
+const people = require("./people");
+
+console.log(people);
