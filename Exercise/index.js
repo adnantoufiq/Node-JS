@@ -1,3 +1,7 @@
-const people = require("./people");
+const fs = require("fs");
 
-console.log(people);
+fs.readFile("myfile.txt", (err, data) => {
+  console.log(data.toString());
+});
+
+console.log("hello world");
