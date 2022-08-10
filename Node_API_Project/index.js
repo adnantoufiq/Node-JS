@@ -9,22 +9,24 @@ const app = {};
 
 // configuration object
 
-const config = {
-  PORT: 3000,
+app.config = {
+  port: 3000,
 };
 
 // create server
 
 app.createServer = () => {
-  const server = http.createServer(handleRequest);
+  const server = http.createServer(app.handleRequest);
 
-  server.listen(app.config.PORT, () => {
-    console.log("Listening on port " + app.config.PORt);
+  server.listen(app.config.port, () => {
+    console.log(`Listening on port " + ${app.config.port}`);
   });
 };
 
 // handle requestes and responses
 
 app.handleRequest = (req, res) => {
-  res.end("hello");
+  res.end("hello ");
 };
+
+app.createServer();
