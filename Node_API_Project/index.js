@@ -33,7 +33,8 @@ app.handleRequest = (req, res) => {
 
   const parsedUrl = url.parse(req.url, true);
   const path = parsedUrl.pathname;
-  console.log(path);
+  const method = req.method.toUpperCase();
+  const headers = req.headers.console.log(method);
 
   // response handle from server
   res.end("hello new world ");
