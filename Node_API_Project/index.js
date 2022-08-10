@@ -3,6 +3,7 @@
 
 // dependencies for this projects
 const http = require("http");
+const url = require("url");
 
 // app object
 const app = {};
@@ -26,7 +27,16 @@ app.createServer = () => {
 // handle requestes and responses
 
 app.handleRequest = (req, res) => {
-  res.end("hello ");
+  // requests handled by users
+
+  // url and parse it
+
+  const parsedUrl = url.parse(req.url, true);
+  const path = parsedUrl.pathname;
+  console.log(path);
+
+  // response handle from server
+  res.end("hello new world ");
 };
 
 app.createServer();
