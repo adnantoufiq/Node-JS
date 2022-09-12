@@ -1,11 +1,12 @@
 const http = require("http");
+const fs = require("fs");
 
-const server = http.createServer((req, res) => {
-  res.write("Welcome");
-  res.write("hello world");
-  res.end();
-});
-
-server.listen(3000);
-
-console.log("server listing on port 3000");
+http
+  .createServer(function (req, res) {
+    fs.readFile("index.html", function (err, data) {
+      res.writeHead(200, { "content-type": "text/html" });
+      res.write(data);
+      res.end();
+    });
+  })
+  .listen(8080);
