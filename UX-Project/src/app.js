@@ -1,11 +1,9 @@
 require("dotenv").config();
 
-// const { authRoute } = require("./routers/auth-router");
-const { usersTable } = require("./users/users-Table");
+const { authRoute } = require("./routers/auth-router");
 // other codes
 const express = require("express");
 const cors = require("cors");
-const { pool } = require("./libs/db/pool");
 const app = express();
 
 app.use(cors());
@@ -19,19 +17,7 @@ const APP_PORT = process.env.appPort;
 //   res.send("Hello world this is my world ");
 // });
 
-app.get("/createDB", async (req, res) => {
-  let sql = "CREATE DATABASE nodemysql ";
-  const [res] = await pool.query(sql, (err, result) => {
-    if (err) {
-      throw err;
-    } else {
-      res.send("Database created ");
-    }
-  });
-});
-
-// app.use("/auth", authRoute);
-app.use("/createTbl", usersTable);
+app.use("/auth", authRoute);
 
 // app listen port
 app.listen(APP_PORT, () => {
