@@ -12,6 +12,13 @@ const pool = mysql2.createPool({
   database: process.env.dbName,
 });
 
+pool.getConnection((err) => {
+  if (err) console.log(err);
+  else {
+    console.log("database ready");
+  }
+});
+
 module.exports = {
   pool,
 };
