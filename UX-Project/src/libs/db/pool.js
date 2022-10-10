@@ -1,6 +1,6 @@
 // use createPool from mysql2/promise
 
-const mysql2 = require("mysql2");
+const mysql2 = require("mysql2/promise");
 
 // const { DB_PORT, DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
@@ -10,13 +10,6 @@ const pool = mysql2.createPool({
   user: process.env.dbUser,
   password: process.env.dbPassword,
   database: process.env.dbName,
-});
-
-pool.getConnection((err) => {
-  if (err) console.log(err);
-  else {
-    console.log("database ready");
-  }
 });
 
 module.exports = {
