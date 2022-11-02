@@ -4,7 +4,7 @@ const {
   handleReqRes,
 } = require("./component/helpForaHandleReqRes/handleReqRes");
 
-const environment = require("./component/environments/environment");
+// const environment = require("./component/environments/environment");
 // moduel scaffholdings
 const app = {};
 
@@ -17,8 +17,8 @@ app.config = {
 app.createServer = () => {
   const server = http
     .createServer(app.handleReqRes)
-    .listen(environment.port, () => {
-      console.log(`server listening on ${environment.port}`);
+    .listen(app.config.port, () => {
+      console.log(`server listening on ${app.config.port}`);
     });
 };
 

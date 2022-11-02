@@ -4,6 +4,7 @@ const routs = require("../allRouteFile/routes");
 const {
   notFoundHandler,
 } = require("../allRouteFile/routeshandler/notFoundHandler");
+const { parseJSON } = require("../utiilits/utilities");
 
 // moducle scaffholdings
 const handler = {};
@@ -45,12 +46,15 @@ handler.handleReqRes = (req, res) => {
   req.on("end", () => {
     realData += decoder.end();
 
+    requestProperties.body = parseJSON(realData);
+
     chosenHandler(requestProperties, (statusCode, payload) => {
       statusCode = typeof statusCode === "number" ? statusCode : 800;
       payload = typeof payload === "object" ? payload : {};
 
       // convert to string
       const payloadStings = JSON.stringify(payload);
+      res.setHeader("Content-type", "application/json");
       res.writeHead(statusCode);
       res.end(payloadStings);
     });
