@@ -1,0 +1,52 @@
+POST http://localhost:4560/customer/add
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdWZpcSIsImVtYWlsIjoidG91ZmlxQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY2MzIwNjAzLCJleHAiOjE2NzQwOTY2MDN9.v1_mDvD8vH6GW4I60XpwkIt9T5roUHsmLZoFhGOtfno
+Content-Type: application/json
+
+ {
+    "CUSTOMER_FIRST_NAME": "Nabil",
+    "CUSTOMER_LAST_NAME": "Islam",
+    "CUSTOMER_CITY": "Dhaka",
+    "CUSTOMER_COUNTRY": "Bangladesh",
+    "CUSTOMER_PHONE_PRIMARY": "04564320320",
+    "CUSTOMER_PHONE_OPTIONAL": ""
+    
+}
+
+###
+
+DELETE http://localhost:4560/customer/delete/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdWZpcSIsImVtYWlsIjoidG91ZmlxQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY2MzIwNjAzLCJleHAiOjE2NzQwOTY2MDN9.v1_mDvD8vH6GW4I60XpwkIt9T5roUHsmLZoFhGOtfno
+
+###
+PUT http://localhost:4560/customer/update/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdWZpcSIsImVtYWlsIjoidG91ZmlxQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY2MzIwNjAzLCJleHAiOjE2NzQwOTY2MDN9.v1_mDvD8vH6GW4I60XpwkIt9T5roUHsmLZoFhGOtfno
+Content-Type: application/json
+
+ {
+    "CUSTOMER_CITY": "Rangpur"
+    
+}
+###
+GET http://localhost:4560/customer/get-customer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdWZpcSIsImVtYWlsIjoidG91ZmlxQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY2MzIwNjAzLCJleHAiOjE2NzQwOTY2MDN9.v1_mDvD8vH6GW4I60XpwkIt9T5roUHsmLZoFhGOtfno
+Content-Type: application/json
+
+{
+    "itemsPerPage": 1,
+    "currentPageNumber":0,
+    "sort": "asc",
+    "orderBy": ""
+}
+
+
+###
+GET http://localhost:4560/customer/customer-order-information/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpZmF5ZXQiLCJlbWFpbCI6InJpZmF5ZXRAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjYyNjAxNjMsImV4cCI6MTY3NDAzNjE2M30.qEPzgrXGcuwUHK59cCAC5CozRn_R3Ef3FbbNttOsX3Q
+Content-Type: application/json
+
+{
+    "itemsPerPage": 1,
+    "currentPageNumber": 0,
+    "sort": "asc",
+    "orderBy": ""
+}

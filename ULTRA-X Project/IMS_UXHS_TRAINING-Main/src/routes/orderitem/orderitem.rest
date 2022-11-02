@@ -1,0 +1,41 @@
+POST http://localhost:4560/orderItem/add
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpZmF5ZXQxIiwiZW1haWwiOiJyaWZheWV0MUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY2NjMxODI1OCwiZXhwIjoxNjc0MDk0MjU4fQ.Ju6COI3l-3REBKW6J3_y7RIpoCWp1N-5Ki3u72NT-tY
+Content-Type: application/json
+
+ {
+    "ORDER_ID":2,
+    "PRODUCT_ID":27,
+    "ORDER_UNIT_PRICE":20.4,
+    "ORDER_QUANTITY":4
+}
+
+###
+
+DELETE http://localhost:4560/orderItem/DELETE/1
+
+###
+PUT http://localhost:4560/orderItem/update/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhYmJpciIsImVtYWlsIjoic2FiYmlyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY2MTY5ODYwLCJleHAiOjE2NzM5NDU4NjB9.DwxPbsrQHxm5Z1i4VsvGmgVZv8iYZIQah-BZ-43_9_4
+Content-Type: application/json
+
+{
+    "ORDER_UNIT_PRICE":65461.4
+}
+###
+GET http://localhost:4560/orderItem/get-ordeitem
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpZmF5ZXQxIiwiZW1haWwiOiJyaWZheWV0MUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY2NjMxODI1OCwiZXhwIjoxNjc0MDk0MjU4fQ.Ju6COI3l-3REBKW6J3_y7RIpoCWp1N-5Ki3u72NT-tY
+
+
+###
+GET http://localhost:4560/orderItem/orderItem-name-Quantity-information
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpZmF5ZXQxIiwiZW1haWwiOiJyaWZheWV0MUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY2NjMxODI1OCwiZXhwIjoxNjc0MDk0MjU4fQ.Ju6COI3l-3REBKW6J3_y7RIpoCWp1N-5Ki3u72NT-tY
+Content-Type: application/json
+
+{
+    "itemsPerPage": -1,
+    "currentPageNumber":0,
+    "sort": "asc",
+    "orderBy": ""
+}
+
+###

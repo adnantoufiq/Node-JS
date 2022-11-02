@@ -87,6 +87,7 @@ const writePDF = (pdfGen) => {
   document.setLineWidth(0.8);
   document.setFontSize(11);
   document.table(50, 266, allInformationData(pdfGen), headers, {
+    
     padding: 2.3,
     printHeaders: false,
     css: {
@@ -113,14 +114,12 @@ const writePDF = (pdfGen) => {
   document.setLineWidth(0.8);
 
   document.table(320, 256, workerInformationData(), workerMarkData, {
-    // autoSize: true,
     padding: 6.5,
     printHeaders: false,
   });
 
   document.setLineWidth(0.8);
   document.table(320, 330, personChargeData(), personMarkData, {
-    // autoSize: true,
     padding: 6.5,
     printHeaders: false,
   });
@@ -133,19 +132,18 @@ const writePDF = (pdfGen) => {
     commentText = commentText.slice(0, maxLength) + ".....";
   }
 
-  const textInLine = document.splitTextToSize(commentText, 560 - 55 - 70);
+  const textInLine = document.splitTextToSize(commentText, 520 - 50 - 90);
 
   document.setFontSize(9.5);
-  document.text("特記事項", 50, 539);
-  document.text(textInLine, 56, 555);
-  document.line(408, 542, 408, 600); // r
-  document.line(50, 542, 50, 600); //  l,
-  document.line(50, 542, 408, 542); // u
-  document.line(50, 600, 408, 600); // d
+  document.text("特記事項", 50, 537);
+  document.setFontSize(11);
+  document.text(textInLine, 56, 556);
+  document.setLineWidth(0.8);
+  document.rect(50, 540, 358, 57);
 
   document.save("evidence-pdf__new_add.pdf");
 };
 
 const pdfGen = getPDF();
-console.log(pdfGen);
+// console.log(pdfGen);
 writePDF(pdfGen);
