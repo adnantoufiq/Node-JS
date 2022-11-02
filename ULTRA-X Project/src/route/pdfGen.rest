@@ -1,9 +1,0 @@
-
-GET http://localhost:4580/pdf/image
-
-###
-GET http://localhost:4580/pdf/custom-font
-
-
-###
-GET http://localhost:4580/pdf/table
