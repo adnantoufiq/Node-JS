@@ -2,11 +2,11 @@ const allInformationData = function (pdfGen) {
   const result = [];
   const data1 = {
     key1: "作業年⽉⽇",
-    key2: "2021-08-07 17:24:45",
+    key2: pdfGen.yearMonthDateHourMinuteSec,
   };
   const data2 = {
     key1: "作業場所",
-    key2: "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F ",
+    key2: pdfGen.location,
   };
   const data3 = {
     key1: "処理番号",
