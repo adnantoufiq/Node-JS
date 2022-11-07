@@ -1,0 +1,17 @@
+POST http://localhost:3000/pdf/pdf-create
+Content-Type: application/json
+
+{
+    "work_date": "date",
+    "work_place": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F ",
+    "processing_number": "000801",
+    "erasing_software": "FlashErase LEGACY",
+    "erasure_method": "Full(0x0000)",
+    "manufacturer": "NEC ",
+    "product_name": "PC-LL570LG",   
+    "product_serial": "7Z10849CA",
+    "disk_model_number":"Unknown ATA Device",
+    "disk_space":"160.0GB ",
+    "serial_number":"Unknown",
+    "comment": ""
+}

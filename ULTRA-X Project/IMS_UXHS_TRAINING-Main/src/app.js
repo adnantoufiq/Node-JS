@@ -44,5 +44,5 @@ app.use("/orderItem", orderItemRoute);
 
 const APP_PORT = process.env.APP_PORT;
 app.listen(APP_PORT, () => {
-    console.log(`The app is listening at http://localhost:${APP_PORT}`);
+  console.log(`The app is listening at http://localhost:${APP_PORT}`);
 });
