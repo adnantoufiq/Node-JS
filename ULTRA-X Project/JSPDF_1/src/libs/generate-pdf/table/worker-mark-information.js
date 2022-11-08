@@ -1,4 +1,4 @@
-const workerInformationData = function (data) {
+const workerInformationData = function () {
   const result = [];
   const data1 = {
     key1: "作業者",
