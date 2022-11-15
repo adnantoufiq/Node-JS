@@ -5,6 +5,7 @@ const {
   deviceInformationTableData,
   deviceInformationTableHeaders,
 } = require("./table/target-device-information");
+const { pool } = require("./db/pool");
 const {
   workerInformationData,
   workerMarkData,
@@ -21,7 +22,10 @@ const {
   monthFinalFormate,
   dateFinalFormate,
 } = require("../generate-pdf/dateTimeFormate/formate");
-
+const {
+  insertTableQuery,
+  deleteGeneratePDF,
+} = require("./sql_query/pdf-query");
 // all require module
 
 const express = require("express");
@@ -34,8 +38,28 @@ const path = require("path");
 
 // PDF-generate-API
 
-pdfRoute.post("/pdf-create", getEvidenceInformationData, (req, res) => {
+pdfRoute.post("/pdf-create", getEvidenceInformationData, async (req, res) => {
   const data = req.body.evidence_information;
+
+  const query = insertTableQuery;
+
+  let values = [
+    data.name,
+    data.path,
+    data.generate_pdf,
+    data.work_date,
+    data.work_place,
+    data.processing_number,
+    data.erasing_software,
+    data.erasure_method,
+    data.manufacturer,
+    data.product_name,
+    data.product_serial,
+    data.disk_model_number,
+    data.disk_space,
+    data.serial_number,
+    data.comment,
+  ];
 
   try {
     const getBinaryFont = () => {
@@ -163,19 +187,45 @@ pdfRoute.post("/pdf-create", getEvidenceInformationData, (req, res) => {
       document.setLineWidth(0.8);
       document.rect(50, 540, 358, 57);
 
+      const dirName = path.join(__dirname, "pdf_create");
+      // console.log(dirName);
+
       for (let i = 0; i < data.generate_pdf; i++) {
-        document.save(`evidence-pdf_${[i + 1]}.pdf`);
+        document.save(`${dirName}/evidence_PDF ${[i + 1]}.pdf`);
+
         pdfNumber = i + 1;
       }
-
-      // document.save("evidence-pdf__new_add.pdf");
     };
+    const dirName1 = path.join(__dirname, "pdf_create");
+    const files = fs.readdirSync(dirName1);
+    console.log(files[0])
+    const fileName = JSON.stringify(files[0]);
+    const getFileName = JSON.parse(fileName);
+
+    // console.log(getFileName)
+
+    let values = [(data.name = getFileName), (data.path = dirName1)];
+    // console.log(values);
+    const [result] = await pool.query(query, values);
+    // console.log(result);
+
+    if (result.affectedRows === 1) {
+      res.status(200).send({
+        status: "success",
+        message: `PDF-information-add-successfully`,
+      });
+    } else {
+      return res.status(506).send({
+        status: "failed",
+        message: "Invalid ",
+      });
+    }
 
     writePDF(data);
-    res.status(200).send({
-      status: "success",
-      message: `${pdfNumber}-PDF-generate-successfully`,
-    });
+    // res.status(200).send({
+    //   status: "success",
+    //   message: `${pdfNumber}-PDF-generate-successfully`,
+    // });
   } catch (error) {
     console.log(error);
     return res.status(500).send({
@@ -184,6 +234,40 @@ pdfRoute.post("/pdf-create", getEvidenceInformationData, (req, res) => {
     });
   }
 });
+
+pdfRoute.delete(
+  "/pdf-delete/:id",
+
+  async (req, res) => {
+    const query = deleteGeneratePDF;
+
+    const values = [req.params.id];
+    // console.log(values);
+
+    try {
+      const [result] = await pool.query(query, values);
+      console.log(result);
+
+      if (result.affectedRows === 1) {
+        return res.status(200).send({
+          status: "success",
+          message: "PDF-deleted-successfully",
+        });
+      } else {
+        return res.status(506).send({
+          status: "failed",
+          message: "Id-not-found",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send({
+        status: "failed",
+        message: "internal-server-error",
+      });
+    }
+  }
+);
 
 // export
 module.exports = {

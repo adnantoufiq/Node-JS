@@ -26,7 +26,6 @@ function createHeaders(keys) {
   }
   return result;
 }
-
 const workerMarkData = createHeaders(["key1"]);
 
 module.exports = {

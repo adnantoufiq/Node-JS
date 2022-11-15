@@ -3,12 +3,14 @@ require("dotenv").config({
 });
 
 //  all import module
+const cors = require("cors");
 
 const express = require("express");
 const app = express();
 
 const { pdfRoute } = require("./libs/generate-pdf/pdf");
 // Common Middlewares
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
