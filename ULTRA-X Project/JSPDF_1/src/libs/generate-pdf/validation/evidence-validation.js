@@ -1,10 +1,3 @@
-const isValidPDFNum= (generate_pdf) => {
-
-    if (!generate_pdf) {
-        return false;
-    }
-    return true;
-}
 
 const isValidWorkDate = (work_date) => {
 
@@ -109,7 +102,6 @@ const isValidSerialNumber= (serial_number) => {
 
 
 module.exports = {
-    isValidPDFNum,
     isValidWorkDate,
     isValidWorkPlace,
     isValidProcessingNumber,
