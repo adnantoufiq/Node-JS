@@ -1,15 +1,33 @@
 const insertTableQuery = `
-INSERT INTO pdf_info(name, path)
+INSERT INTO  tbl_information(FILE_NAME, FILE_PATH)
 VALUES(?, ?)`;
 
 const deleteGeneratePDF = `
 DELETE 
 FROM 
-    pdf_info 
+tbl_information 
 WHERE 
     ID = ?`;
+
+const pdfName = `
+SELECT
+    FILE_NAME
+FROM
+    tbl_information
+WHERE
+    ID = ?`;
+
+const pdfId = `
+    SELECT
+        ID
+    FROM
+        tbl_information
+    WHERE
+        ID = ?`;
 
 module.exports = {
   insertTableQuery,
   deleteGeneratePDF,
+  pdfName,
+  pdfId,
 };
