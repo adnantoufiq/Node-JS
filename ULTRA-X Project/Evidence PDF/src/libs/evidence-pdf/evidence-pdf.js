@@ -31,6 +31,9 @@ const {
 } = require("./sql_query/query");
 
 const { pool } = require("./db/pool");
+const app = express();
+
+app.use(express.static(path.join(__dirname, "public")));
 
 /**
  * Generate pdf using jspdf instance based on the pdfData
@@ -153,48 +156,68 @@ const writePDF = async (pdfData, document) => {
   // save pdf
   const dirName = path.join(__dirname, "evidence");
 
-  document.save(`${dirName}/Evidence-PDF _ ${pdfData.processing_number}.pdf`);
+  // document.save(`${dirName}/Evidence-PDF _ ${pdfData.processing_number}.pdf`);
+  const fileName = ` Evidence-PDF _ ${pdfData.processing_number}.pdf`;
+  // const a = fs.readFileSync(fileName);
+  // console.log(a)
+ 
+
+  const dirName1 = path.join(__dirname, "evidence");
+
+  const getFilePath = `${dirName1}/Evidence-PDF  ${pdfData.processing_number}.pdf`;
+ 
+  console.log(getFilePath)
+
+ 
+
+  const values = [fileName, getFilePath];
+  const [result] = await pool.query(insertTableQuery, values);
 };
 
-// Author Md. Majedul Islam & Ariful Islam Toufiq
 // Generate PDF API
+
 generatePdf.post(
   "/generate-pdf",
   checkEvidencePdfBodyDataValidity,
   (req, res) => {
     try {
+    
+
       const pdfData = req.body.pdfData;
-
-      const document = new jsPDF({
-        orientation: "portrait",
-        unit: "px",
-        compress: true,
-        putOnlyUsedFonts: true,
-      });
-      const getBinaryFont = () => {
-        const filePath = path.normalize(`${__dirname}/font/ipaexg.ttf`);
-        const fileContent = fs.readFileSync(filePath, "binary");
-        return fileContent;
-      };
-      // add custom font
-      const japaneseFont = getBinaryFont();
-      document.addFileToVFS("ipaexg.ttf", japaneseFont);
-      document.addFont("ipaexg.ttf", "ipaexg", "normal");
-      document.addFont("ipaexg.ttf", "ipaexg", "bold");
-      document.setFont("ipaexg", "normal");
-
-      // send pdf data
       for (let i = 0; i < pdfData.length; i++) {
+        const document = new jsPDF({
+          orientation: "portrait",
+          unit: "px",
+          compress: true,
+          putOnlyUsedFonts: true,
+        });
+        const getBinaryFont = () => {
+          const filePath = path.normalize(`${__dirname}/font/ipaexg.ttf`);
+          const fileContent = fs.readFileSync(filePath, "binary");
+          return fileContent;
+        };
+        // add custom font
+        const japaneseFont = getBinaryFont();
+        document.addFileToVFS("ipaexg.ttf", japaneseFont);
+        document.addFont("ipaexg.ttf", "ipaexg", "normal");
+        document.addFont("ipaexg.ttf", "ipaexg", "bold");
+        document.setFont("ipaexg", "normal");
+
+        // send pdf data
+        // console.log(pdfData[0].processing_number)
+
         if (i === 0) {
           writePDF(pdfData[i], document);
         }
+
         if (i > 0) {
           document.deletePage(1);
           document.addPage();
           writePDF(pdfData[i], document);
         }
       }
-      console.log(document);
+
+      // console.log(document);
       return res.status(200).send({
         status: "success",
         message: `generate-pdf-successfully`,
@@ -218,6 +241,7 @@ generatePdf.delete("/delete-pdf/:id", async (req, res) => {
       // checked database pdf file id is
       const [name] = await pool.query(pdfName, value);
       const fileName = name[0].name;
+
       const dirName = path.join(__dirname, "evidence");
       const evidencePath = `${dirName}/`;
 
