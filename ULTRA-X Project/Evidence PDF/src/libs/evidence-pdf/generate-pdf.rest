@@ -1,5 +1,5 @@
 ###
-DELETE http://localhost:3000/evidence-pdf/delete-pdf/9
+DELETE http://localhost:3000/evidence-pdf/delete-pdf/2
 
 ###
 POST http://localhost:3000/evidence-pdf/generate-pdf

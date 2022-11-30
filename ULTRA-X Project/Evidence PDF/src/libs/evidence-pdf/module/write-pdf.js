@@ -5,14 +5,11 @@
  */
  const { getXOffset } = require("../get-offset/get-offset");
  const {jsPDF} = require("jspdf")
- const fs = require("fs");
 const path = require("path");
 const {pool} = require('../db/pool')
 const {
   insertTableQuery,
-  deleteGeneratePDF,
-  pdfName,
-  pdfId,
+ 
 } = require("../sql_query/query");
  const {
   yearFinalFormate,
@@ -147,18 +144,21 @@ const writePDF = async (pdfData, document) => {
 
   // save pdf
   const dirName = path.join(__dirname, "../evidence/");
-  console.log(dirName)
+  // console.log(dirName)
 
-  document.save(`${dirName}/Evidence-PDF _ ${pdfData.processing_number}.pdf`);
+  // document.save(`${dirName}/Evidence-PDF _ ${pdfData.processing_number}.pdf`);
   const fileName = `Evidence-PDF _ ${pdfData.processing_number}.pdf`;
 
   const dirName1 = path.join(__dirname, "evidence");
 
   const getFilePath = `${dirName1}/Evidence-PDF  ${pdfData.processing_number}.pdf`;
+  const normalizePath = path.normalize(getFilePath)
+  const parsenornalizePath = JSON.parse(normalizePath)
+  console.log({parsenormalizePath})
 
 
   const values = [fileName, getFilePath];
-  const [result] = await pool.query(insertTableQuery, values);
+  // const [result] = await pool.query(insertTableQuery, values);
 };
 
 

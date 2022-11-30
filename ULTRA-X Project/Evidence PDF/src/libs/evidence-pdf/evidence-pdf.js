@@ -17,6 +17,7 @@ const {
 
 
 const { writePDF } = require("./module/write-pdf");
+const {editPDF} = require('./module/edit-pdf')
 
 const { pool } = require("./db/pool");
 
@@ -80,25 +81,22 @@ generatePdf.post(
 generatePdf.delete("/delete-pdf/:id", async (req, res) => {
   try {
     const value = req.params.id;
-    // console.log(value);
     const [PDFid] = await pool.query(pdfId, value);
 
     if (PDFid && typeof PDFid === "object" && PDFid.length > 0) {
-      // checked database pdf file id is
+      
       const [name] = await pool.query(pdfName, value);
-      // console.log(name);
       const fileName = name[0].FILE_NAME;
-      console.log(fileName);
 
       const dirName = path.join(__dirname, "evidence");
       const evidencePath = `${dirName}/`;
-      console.log(evidencePath);
 
       fs.readdir(dirName, function (err, data) {
         if (data.length == 0) {
           return res.status(404).send({
             status: "failed",
             message: "Directory is Empty",
+            err,
           });
         } else {
           fs.unlink(evidencePath + fileName, async function (err) {
@@ -106,6 +104,7 @@ generatePdf.delete("/delete-pdf/:id", async (req, res) => {
               return res.status(404).send({
                 status: "failed",
                 message: "file-not-found",
+                
               });
             } else {
               const query = deleteGeneratePDF;
