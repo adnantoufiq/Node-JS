@@ -11,6 +11,8 @@
 const checkEvidencePdfBodyDataValidity = (req, res, next) => {
     const pdfData = req.body.pdfData;
     // console.log(pdfData)
+    let errors = [];
+
     for (let i = 0; i < pdfData.length; i++) {
         const Data = {
             company_address: pdfData[i].company_address,
@@ -27,7 +29,6 @@ const checkEvidencePdfBodyDataValidity = (req, res, next) => {
         }
         // console.log(pdfData[i].processing_number)
 
-        let errors = [];
         if (!Data.company_address) {
             errors.push("company_address-can-not-be-empty");
         }
@@ -59,7 +60,9 @@ const checkEvidencePdfBodyDataValidity = (req, res, next) => {
             errors.push("serial_no-can-not-be-empty");
         }
 
-        if (errors.length >= 1) {
+        
+    }
+    if (errors.length >= 1) {
             return res.status(406).send({
                 status: "failed",
                 message: "invalid-data",
@@ -69,7 +72,6 @@ const checkEvidencePdfBodyDataValidity = (req, res, next) => {
             req.body.pdfData = pdfData;
             next();
         }
-    }
 }
 
 module.exports = {

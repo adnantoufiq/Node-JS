@@ -3,21 +3,17 @@
  * @param {Object} pdfData The pdf data to generate pdf
  * @param {jsPDF} document The document that holds jspdf instance
  */
- const { getXOffset } = require("../get-offset/get-offset");
- const {jsPDF} = require("jspdf")
+const { getXOffset } = require("../get-offset/get-offset");
+const { jsPDF } = require("jspdf");
 const path = require("path");
-const {pool} = require('../db/pool')
+const { pool } = require("../db/pool");
+const { insertTableQuery } = require("../sql_query/query");
 const {
-  insertTableQuery,
- 
-} = require("../sql_query/query");
- const {
   yearFinalFormate,
   monthFinalFormate,
   dateFinalFormate,
 } = require("../dateTimeFormate/formate");
 let { generateEraseData, eraseTableHeaders } = require("../table/erase-info");
-
 
 let { generateWorkerData, workerHeaders } = require("../table/worker-table");
 let {
@@ -29,6 +25,8 @@ let {
   targetTableHeaders,
 } = require("../table/target-device");
 const { logo } = require("../images/logo");
+const fs = require("fs");
+
 const writePDF = async (pdfData, document) => {
   // let pdfData = req.body.pdfData;
   // const document = new jsPDF({
@@ -37,9 +35,8 @@ const writePDF = async (pdfData, document) => {
   //   compress: true,
   //   putOnlyUsedFonts: true,
   // });
- 
+
   const leftMargin = 50;
-  
 
   document.setFontSize(9);
   const date = `作成⽇：     ${yearFinalFormate} 年 ${monthFinalFormate} ⽉ ${dateFinalFormate} ⽇`;
@@ -140,28 +137,36 @@ const writePDF = async (pdfData, document) => {
   const textInLine = document.splitTextToSize(commentText, 455 - 55 - 63);
   document.text(textInLine, 60, 550);
 
-  // addFooters(document);
-
   // save pdf
   const dirName = path.join(__dirname, "../evidence/");
-  // console.log(dirName)
 
-  // document.save(`${dirName}/Evidence-PDF _ ${pdfData.processing_number}.pdf`);
+  document.save(`${dirName}/Evidence-PDF _ ${pdfData.processing_number}.pdf`);
   const fileName = `Evidence-PDF _ ${pdfData.processing_number}.pdf`;
 
-  const dirName1 = path.join(__dirname, "evidence");
+  const getFilePath = dirName + fileName;
+  const normalizePath = path.normalize(getFilePath);
+  const strNormalizePath = JSON.stringify(normalizePath);
+  const parseNormalizePath = JSON.parse(strNormalizePath);
+  const { size } = fs.statSync(parseNormalizePath);
+  const strSize = JSON.stringify(size);
 
-  const getFilePath = `${dirName1}/Evidence-PDF  ${pdfData.processing_number}.pdf`;
-  const normalizePath = path.normalize(getFilePath)
-  const parsenornalizePath = JSON.parse(normalizePath)
-  console.log({parsenormalizePath})
+  const { base, dir, ext, name } = path.parse(parseNormalizePath);
 
+  const strDir = JSON.stringify(dir);
+  const strBase = JSON.stringify(base);
+  const strExt = JSON.stringify(ext);
+  const strName = JSON.stringify(name);
+  const fileInfo = strDir + strBase + strExt + strName + strSize;
+  const stringAllImportantInfo = JSON.stringify(fileInfo);
 
-  const values = [fileName, getFilePath];
-  // const [result] = await pool.query(insertTableQuery, values);
+  // console.log({stringAllImportantInfo})
+
+  const tableValue = pdfData.UXHS_DETAIL_TABLE_ID;
+
+  const values = [tableValue, stringAllImportantInfo, fileName, getFilePath];
+  const [result] = await pool.query(insertTableQuery, values);
 };
 
-
-module.exports={
+module.exports = {
   writePDF,
-}
+};
