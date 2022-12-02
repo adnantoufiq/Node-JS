@@ -10,7 +10,6 @@
  */
 const checkEvidencePdfBodyDataValidity = (req, res, next) => {
     const pdfData = req.body.pdfData;
-    // console.log(pdfData)
     let errors = [];
     for (let i = 0; i < pdfData.length; i++) {
         const Data = {
@@ -26,8 +25,6 @@ const checkEvidencePdfBodyDataValidity = (req, res, next) => {
             serial_no: pdfData[i].serial_no,
             comment: pdfData[i].comment
         }
-        // console.log(pdfData[i].processing_number)
-
 
         if (!Data.company_address) {
             errors.push("company_address-can-not-be-empty");
@@ -60,7 +57,6 @@ const checkEvidencePdfBodyDataValidity = (req, res, next) => {
             errors.push("serial_no-can-not-be-empty");
         }
     }
-
 
     if (errors.length >= 1) {
         return res.status(406).send({

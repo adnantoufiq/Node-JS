@@ -10,7 +10,7 @@ const initGenerateFile = (pdfData) => {
     const startTime = new Date();
 
     let i = 0;
-    const totalPdf = pdfData.length;
+    // const totalPdf = pdfData.length;
     // console.log(totalPdf)
 
 
@@ -44,7 +44,6 @@ const initGenerateFile = (pdfData) => {
         // send pdf data
         if (i === 0) {
             writePDF(pdfData[i], document, startTime);
-
         }
         if (i > 0) {
             document.deletePage(1);

@@ -5,22 +5,22 @@ const fs = require('fs');
 const path = require('path');
 const { getXOffset } = require('../get-offset/get-offset')
 const { logo } = require('../images/logo');
-var { generateEraseData, eraseTableHeaders } = require('../table/erase-info')
-var { generateWorkerData, workerHeaders } = require('../table/worker-table')
-var { generateResponsibleData, responsibleHeaders } = require('../table/responsible-table')
-var { generateDataTargetDevice, targetTableHeaders } = require('../table/target-device')
+const { generateEraseData, eraseTableHeaders } = require('../table/erase-info')
+const { generateWorkerData, workerHeaders } = require('../table/worker-table')
+const { generateResponsibleData, responsibleHeaders } = require('../table/responsible-table')
+const { generateDataTargetDevice, targetTableHeaders } = require('../table/target-device')
 // const { addFooters } = require('../get-page-no/get-page-no') // Not used yet
 
 /**
  * Generate pdf using jspdf instance based on the pdfData
- * @Author Md. Majedul Islam
+ * @Author Ariful Islam Toufiq
  * @param {Object} pdfData The pdf data to generate pdf
  * @param {jsPDF} document The document that holds jspdf instance
  */
 const writePDF = async (pdfData, document, startTime) => {
     // console.log(pdfData);
-    let day = (startTime.getDate() + '').padStart(2, '0');
-    let month = (startTime.getMonth() + 1 + '').padStart(2, '0');
+    const day = (startTime.getDate() + '').padStart(2, '0');
+    const month = (startTime.getMonth() + 1 + '').padStart(2, '0');
     const year = (startTime.getFullYear() + '').padStart(2, '0');
     const leftMargin = 50;
     document.setFontSize(9);
@@ -40,9 +40,9 @@ const writePDF = async (pdfData, document, startTime) => {
         .text('Tel:03-5823-5620 Fax:03-5823-5667', 278, 181);
 
     // centralized main text using the function
-    const text1 = "データ消去証明書";
-    const xOffset = getXOffset(text1, document);
-    document.setFontSize(12).text(text1, xOffset, 205)
+    const certificate = "データ消去証明書";
+    const xOffset = getXOffset(certificate, document);
+    document.setFontSize(12).text(certificate, xOffset, 205)
         .setFontSize(9);
 
     const longText = 'この度、貴社よりご依頼いただきました電⼦記録媒体のソフトウェア消去を、下記の内容で⾏いましたことを証明致します。';
@@ -109,10 +109,9 @@ const writePDF = async (pdfData, document, startTime) => {
 
     //addFooters(document);
 
-    // save pdf
     const dirName = path.join(__dirname, "../evidence/");
-    // console.log(dirName)
 
+    // save pdf
     document.save(`${dirName}/Evidence-PDF _ ${pdfData.processing_number}.pdf`);
     const fileName = `Evidence-PDF _ ${pdfData.processing_number}.pdf`;
     const getFilePath = dirName + fileName;
@@ -122,17 +121,18 @@ const writePDF = async (pdfData, document, startTime) => {
     const { size } = fs.statSync(parseNormalizePath);
     const strSize = JSON.stringify(size);
     const { dir, base, ext, name } = path.parse(parseNormalizePath);
-    // const [strDir, strBase, strExt, strName] = JSON.stringify([dir, base, ext, name]);
     const strDir = JSON.stringify(dir);
     const strBase = JSON.stringify(base);
     const strExt = JSON.stringify(ext);
     const strName = JSON.stringify(name);
     const fileInfo = strDir + strBase + strExt + strName + strSize;
-    // console.log(fileInfo);
     const strFileInfo = JSON.stringify(fileInfo);
-    const uxshTableValue = pdfData.uxsh_detail_table_id;
-    const values = [uxshTableValue, strFileInfo, fileName, getFilePath];
-    await pool.query(insertTableQuery, values);
+    const uxshTableID = pdfData.uxsh_detail_table_id;
+    const values = [uxshTableID, strFileInfo, fileName, getFilePath];
+    setTimeout(function () {
+        pool.query(insertTableQuery, values);
+    }, 50)
+
 }
 module.exports = {
     writePDF

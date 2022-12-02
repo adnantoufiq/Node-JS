@@ -7,6 +7,47 @@ const insertTableQuery =
     )
     VALUES(?, ?, ?, ?)`;
 
+const updateQuery = (columns) => {
+    let _query = "UPDATE tbl_evidence_information SET ";
+    const _values = [];
+
+    if (columns.uxshTableValue) {
+        _query += "UXHS_DETAIL_TABLE_ID = ? ";
+        _values.push(columns.uxshTableValue);
+    }
+    if (columns.strFileInfo) {
+        if (_values.length > 0) {
+            _query += ", ";
+        }
+        _query += "FILE_INFORMATION = ? ";
+        _values.push(columns.strFileInfo);
+    }
+    if (columns.fileName) {
+        if (_values.length > 0) {
+            _query += ", ";
+        }
+        _query += "FILE_NAME = ? ";
+        _values.push(columns.fileName);
+    }
+    if (columns.getFilePath) {
+        if (_values.length > 0) {
+            _query += ", ";
+        }
+        _query += "FILE_PATH = ? ";
+        _values.push(columns.getFilePath);
+    }
+
+    if (_values.length > 0) {
+        _query += ", UPDATED_AT = ? ";
+        _values.push(columns.time);
+    }
+
+    _query += "WHERE ID=?";
+    _values.push(columns.id);
+
+    return [_query, _values];
+};
+
 const deleteGeneratePDF = `
 DELETE 
 FROM 
@@ -29,14 +70,6 @@ const pdfId = `
     WHERE
         ID = ?`
 
-const getFileInfo = `
-SELECT 
-    FILE_INFORMATION
-FROM 
-    tbl_evidence_information
-WHERE
-    ID = ?
-`;
 const gettableId = `
 SELECT 
     UXHS_DETAIL_TABLE_ID
@@ -46,11 +79,12 @@ WHERE
     ID = ?
 `;
 
+
 module.exports = {
     insertTableQuery,
     deleteGeneratePDF,
     pdfName,
     pdfId,
-    getFileInfo,
-    gettableId
+    gettableId,
+    updateQuery
 };
