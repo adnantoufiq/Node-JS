@@ -1,0 +1,38 @@
+POST http://localhost:4560/supplier/add
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdWZpcSIsImVtYWlsIjoidG91ZmlxQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY2MzIwNjAzLCJleHAiOjE2NzQwOTY2MDN9.v1_mDvD8vH6GW4I60XpwkIt9T5roUHsmLZoFhGOtfno
+Content-Type: application/json
+
+ {
+    "SUPPLIER_COMPANY_NAME": "Apex",
+    "SUPPLIER_CONTACT_NAME": "Taimur",
+    "SUPPLIER_CITY": "Khulna",
+    "SUPPLIER_COUNTRY": "Bangladesh",
+    "SUPPLIER_PHONE_PRIMARY": "0123456789",
+    "SUPPLIER_PHONE_OPTIONAL": "",
+    "SUPPLIER_EMAIL": "lion5465@gmail.com"
+    
+}
+
+###
+
+DELETE http://localhost:4560/supplier/delete/1
+
+###
+PUT http://localhost:4560/supplier/update/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdWZpcSIsImVtYWlsIjoidG91ZmlxQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY2MzIwNjAzLCJleHAiOjE2NzQwOTY2MDN9.v1_mDvD8vH6GW4I60XpwkIt9T5roUHsmLZoFhGOtfno
+Content-Type: application/json
+
+ {
+    "SUPPLIER_EMAIL": "skjfhkjd@gmail.com"
+}
+###
+GET http://localhost:4560/supplier/get-supplier
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdWZpcSIsImVtYWlsIjoidG91ZmlxQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY2MzIwNjAzLCJleHAiOjE2NzQwOTY2MDN9.v1_mDvD8vH6GW4I60XpwkIt9T5roUHsmLZoFhGOtfno
+Content-Type: application/json
+
+{
+    "itemsPerPage": 1,
+    "currentPageNumber":1 ,
+    "sort": "asc",
+    "orderBy": ""
+}
