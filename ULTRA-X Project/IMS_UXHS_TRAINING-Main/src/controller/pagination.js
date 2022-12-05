@@ -1,5 +1,5 @@
 /**
- * @author Md. Majedul Islam,
+ * @author Md. Ariful Islam,
  * Software Engineer,
  * Ultra-X BD Ltd.
  *
