@@ -13,7 +13,7 @@ var { generateDataTargetDevice, targetTableHeaders } = require('../table/target-
 
 /**
  * Generate pdf using jspdf instance based on the pdfData
- * @Author Md. Majedul Islam
+ * @Author Ariful Islam Toufiq
  * @param {Object} pdfData The pdf data to generate pdf
  * @param {jsPDF} document The document that holds jspdf instance
  */
