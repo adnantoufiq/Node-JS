@@ -1,5 +1,4 @@
-const insertTableQuery =
-    `INSERT INTO tbl_evidence_information(
+const insertTableQuery = `INSERT INTO tbl_evidence_information(
         UXHS_DETAIL_TABLE_ID,
         FILE_INFORMATION,
         FILE_NAME,
@@ -8,44 +7,44 @@ const insertTableQuery =
     VALUES(?, ?, ?, ?)`;
 
 const updateQuery = (columns) => {
-    let _query = "UPDATE tbl_evidence_information SET ";
-    const _values = [];
+  let _query = "UPDATE tbl_evidence_information SET ";
+  const _values = [];
 
-    if (columns.uxshTableValue) {
-        _query += "UXHS_DETAIL_TABLE_ID = ? ";
-        _values.push(columns.uxshTableValue);
-    }
-    if (columns.strFileInfo) {
-        if (_values.length > 0) {
-            _query += ", ";
-        }
-        _query += "FILE_INFORMATION = ? ";
-        _values.push(columns.strFileInfo);
-    }
-    if (columns.fileName) {
-        if (_values.length > 0) {
-            _query += ", ";
-        }
-        _query += "FILE_NAME = ? ";
-        _values.push(columns.fileName);
-    }
-    if (columns.getFilePath) {
-        if (_values.length > 0) {
-            _query += ", ";
-        }
-        _query += "FILE_PATH = ? ";
-        _values.push(columns.getFilePath);
-    }
-
+  if (columns.uxshTableValue) {
+    _query += "UXHS_DETAIL_TABLE_ID = ? ";
+    _values.push(columns.uxshTableValue);
+  }
+  if (columns.strFileInfo) {
     if (_values.length > 0) {
-        _query += ", UPDATED_AT = ? ";
-        _values.push(columns.time);
+      _query += ", ";
     }
+    _query += "FILE_INFORMATION = ? ";
+    _values.push(columns.strFileInfo);
+  }
+  if (columns.fileName) {
+    if (_values.length > 0) {
+      _query += ", ";
+    }
+    _query += "FILE_NAME = ? ";
+    _values.push(columns.fileName);
+  }
+  if (columns.getFilePath) {
+    if (_values.length > 0) {
+      _query += ", ";
+    }
+    _query += "FILE_PATH = ? ";
+    _values.push(columns.getFilePath);
+  }
 
-    _query += "WHERE ID=?";
-    _values.push(columns.id);
+  if (_values.length > 0) {
+    _query += ", UPDATED_AT = ? ";
+    _values.push(columns.time);
+  }
 
-    return [_query, _values];
+  _query += "WHERE ID=?";
+  _values.push(columns.id);
+
+  return [_query, _values];
 };
 
 const deleteGeneratePDF = `
@@ -68,7 +67,7 @@ const pdfId = `
     FROM
     tbl_evidence_information
     WHERE
-        ID = ?`
+        ID = ?`;
 
 const gettableId = `
 SELECT 
@@ -79,12 +78,15 @@ WHERE
     ID = ?
 `;
 
-
+const getTableInfo = `SELECT * 
+    FROM 
+tbl_evidence_information`;
 module.exports = {
-    insertTableQuery,
-    deleteGeneratePDF,
-    pdfName,
-    pdfId,
-    gettableId,
-    updateQuery
+  insertTableQuery,
+  deleteGeneratePDF,
+  pdfName,
+  pdfId,
+  gettableId,
+  updateQuery,
+  getTableInfo,
 };
