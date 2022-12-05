@@ -42,35 +42,37 @@ generatePdf.delete("/delete-pdf/:id", async (req, res) => {
 
   try {
     if (PDFid && typeof PDFid === "object" && PDFid.length > 0) {
-      const [result] = await pool.query(gettableId, value);
-      const tableId = result[0].UXHS_DETAIL_TABLE_ID;
-      const [name] = await pool.query(pdfName, value);
-      const fileName = name[0].file_name;
-      const evidencePath = path.join(__dirname, "evidence/");
+      // const [result] = await pool.query(gettableId, value);
+      // const tableId = result[0].UXHS_DETAIL_TABLE_ID;
+      // const [name] = await pool.query(pdfName, value);
+      // const fileName = name[0].file_name;
+      // const evidencePath = path.join(__dirname, "evidence/");
 
-      fs.readdir(evidencePath, function (err, data) {
-        if (data.length == 0) {
-          return res.status(404).send({
-            status: "failed",
-            message: "Directory is Empty",
-            err,
-          });
-        } else {
-          fs.unlink(evidencePath + fileName, async function (err) {
-            if (err) {
-              return res.status(404).send({
-                status: "failed",
-                message: "file-not-found",
-              });
-            } else {
-              await pool.query(deleteGeneratePDF, value);
-              return res.status(500).send({
-                status: "success",
-                message: "pdf-delete-successfully",
-              });
-            }
-          });
-        }
+      // fs.readdir(evidencePath, function (err, data) {
+      //   if (data.length == 0) {
+      //     return res.status(404).send({
+      //       status: "failed",
+      //       message: "Directory is Empty",
+      //       err,
+      //     });
+      //   } else {
+      //     fs.unlink(evidencePath + fileName, async function (err) {
+      //       if (err) {
+      //         return res.status(404).send({
+      //           status: "failed",
+      //           message: "file-not-found",
+      //         });
+      //       } else {
+
+      //       }
+      //     });
+      //   }
+      // });
+      deletePdf;
+      await pool.query(deleteGeneratePDF, value);
+      return res.status(500).send({
+        status: "success",
+        message: "pdf-delete-successfully",
       });
     } else {
       return res.status(500).send({

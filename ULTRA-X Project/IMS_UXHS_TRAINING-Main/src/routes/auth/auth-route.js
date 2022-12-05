@@ -1,6 +1,3 @@
-/** @format */
-// AUTHORIZED BY MAJEDUL
-
 require("dotenv").config();
 // const bcrypt = require("bcrypt");
 const { pool } = require("../../libs/db/pool");

@@ -20,7 +20,6 @@ const {
   dateFinalFormate,
 } = require("../dateTimeFormate/formate");
 
-
 /**
  *
  * @Author Ariful Islam Toufiq
@@ -28,7 +27,6 @@ const {
  * @param {jsPDF} document The document that holds jspdf instance
  */
 const writePDF = async (pdfData, document, startTime) => {
- 
   const leftMargin = 50;
   document.setFontSize(9);
   const date = `作成⽇：     ${yearFinalFormate} 年 ${monthFinalFormate} ⽉ ${dateFinalFormate} ⽇`;
@@ -135,7 +133,7 @@ const writePDF = async (pdfData, document, startTime) => {
   const dirName = path.join(__dirname, "../evidence/");
 
   // save pdf
-  document.save(`${dirName}/Evidence-PDF _ ${pdfData.processing_number}.pdf`);
+  // document.save(`${dirName}/Evidence-PDF _ ${pdfData.processing_number}.pdf`);
   const fileName = `Evidence-PDF _ ${pdfData.processing_number}.pdf`;
   const getFilePath = dirName + fileName;
   const normalizePath = path.normalize(getFilePath);
@@ -152,9 +150,9 @@ const writePDF = async (pdfData, document, startTime) => {
   const strFileInfo = JSON.stringify(fileInfo);
   const uxshTableID = pdfData.uxsh_detail_table_id;
   const values = [uxshTableID, strFileInfo, fileName, getFilePath];
-  setTimeout(function () {
-    pool.query(insertTableQuery, values);
-  }, 50);
+  // setTimeout(function () {
+  //   pool.query(insertTableQuery, values);
+  // }, 50);
 };
 module.exports = {
   writePDF,
