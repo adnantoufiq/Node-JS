@@ -1,17 +1,17 @@
 ###
-DELETE http://localhost:4560/evidence-pdf/delete-pdf/202
+DELETE http://localhost:4560/evidence-pdf/delete-pdf/203
 
 ###
-POST http://localhost:4560/evidence-pdf/re-generate-pdf/201
+POST http://localhost:4560/evidence-pdf/re-generate-pdf/206
 Content-Type: application/json
 
 {
     "pdfData": 
      [
         {
-            "uxsh_detail_table_id":"150",
+            "uxsh_detail_table_id":"1",
             "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
-            "processing_number": "150",
+            "processing_number": "1000",
             "erase_software": "FlashErase LEGACY",
             "erase_method": "Full(0x0000)",
             "vendor_name": "narshingdi",
@@ -33,7 +33,7 @@ Content-Type: application/json
 
 {
     "pdfData": 
-    [
+  [
     {
         "uxsh_detail_table_id": "1",
         "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
@@ -48,7 +48,7 @@ Content-Type: application/json
         "serial_no": "Unknown",
         "comment": ""
     },
-        {
+    {
         "uxsh_detail_table_id": "2",
         "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
         "processing_number": "2",
@@ -61,9 +61,119 @@ Content-Type: application/json
         "disk_space": "160.0GB",
         "serial_no": "Unknown",
         "comment": ""
+    },
+    {
+        "uxsh_detail_table_id": "3",
+        "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
+        "processing_number": "3",
+        "erase_software": "FlashErase LEGACY",
+        "erase_method": "Full(0x0000)",
+        "vendor_name": "NEC",
+        "manufacturer": "PC-LL570LG",
+        "product_serial": "7Z10849CA",
+        "disk_model_no": "Unknown ATA Device",
+        "disk_space": "160.0GB",
+        "serial_no": "Unknown",
+        "comment": ""
+    },
+    {
+        "uxsh_detail_table_id": "4",
+        "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
+        "processing_number": "4",
+        "erase_software": "FlashErase LEGACY",
+        "erase_method": "Full(0x0000)",
+        "vendor_name": "NEC",
+        "manufacturer": "PC-LL570LG",
+        "product_serial": "7Z10849CA",
+        "disk_model_no": "Unknown ATA Device",
+        "disk_space": "160.0GB",
+        "serial_no": "Unknown",
+        "comment": ""
+    },
+    {
+        "uxsh_detail_table_id": "5",
+        "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
+        "processing_number": "5",
+        "erase_software": "FlashErase LEGACY",
+        "erase_method": "Full(0x0000)",
+        "vendor_name": "NEC",
+        "manufacturer": "PC-LL570LG",
+        "product_serial": "7Z10849CA",
+        "disk_model_no": "Unknown ATA Device",
+        "disk_space": "160.0GB",
+        "serial_no": "Unknown",
+        "comment": ""
+    },
+    {
+        "uxsh_detail_table_id": "6",
+        "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
+        "processing_number": "6",
+        "erase_software": "FlashErase LEGACY",
+        "erase_method": "Full(0x0000)",
+        "vendor_name": "NEC",
+        "manufacturer": "PC-LL570LG",
+        "product_serial": "7Z10849CA",
+        "disk_model_no": "Unknown ATA Device",
+        "disk_space": "160.0GB",
+        "serial_no": "Unknown",
+        "comment": ""
+    },
+    {
+        "uxsh_detail_table_id": "7",
+        "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
+        "processing_number": "7",
+        "erase_software": "FlashErase LEGACY",
+        "erase_method": "Full(0x0000)",
+        "vendor_name": "NEC",
+        "manufacturer": "PC-LL570LG",
+        "product_serial": "7Z10849CA",
+        "disk_model_no": "Unknown ATA Device",
+        "disk_space": "160.0GB",
+        "serial_no": "Unknown",
+        "comment": ""
+    },
+    {
+        "uxsh_detail_table_id": "8",
+        "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
+        "processing_number": "8",
+        "erase_software": "FlashErase LEGACY",
+        "erase_method": "Full(0x0000)",
+        "vendor_name": "NEC",
+        "manufacturer": "PC-LL570LG",
+        "product_serial": "7Z10849CA",
+        "disk_model_no": "Unknown ATA Device",
+        "disk_space": "160.0GB",
+        "serial_no": "Unknown",
+        "comment": ""
+    },
+    {
+        "uxsh_detail_table_id": "9",
+        "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
+        "processing_number": "9",
+        "erase_software": "FlashErase LEGACY",
+        "erase_method": "Full(0x0000)",
+        "vendor_name": "NEC",
+        "manufacturer": "PC-LL570LG",
+        "product_serial": "7Z10849CA",
+        "disk_model_no": "Unknown ATA Device",
+        "disk_space": "160.0GB",
+        "serial_no": "Unknown",
+        "comment": ""
+    },
+    {
+        "uxsh_detail_table_id": "10",
+        "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
+        "processing_number": "10",
+        "erase_software": "FlashErase LEGACY",
+        "erase_method": "Full(0x0000)",
+        "vendor_name": "NEC",
+        "manufacturer": "PC-LL570LG",
+        "product_serial": "7Z10849CA",
+        "disk_model_no": "Unknown ATA Device",
+        "disk_space": "160.0GB",
+        "serial_no": "Unknown",
+        "comment": ""
     }
-
-   
-]   
+]
     
 }
