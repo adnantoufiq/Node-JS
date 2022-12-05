@@ -19,19 +19,16 @@ const {
   monthFinalFormate,
   dateFinalFormate,
 } = require("../dateTimeFormate/formate");
-// const { addFooters } = require('../get-page-no/get-page-no') // Not used yet
+
 
 /**
- * Generate pdf using jspdf instance based on the pdfData
+ *
  * @Author Ariful Islam Toufiq
  * @param {Object} pdfData The pdf data to generate pdf
  * @param {jsPDF} document The document that holds jspdf instance
  */
 const writePDF = async (pdfData, document, startTime) => {
-  // console.log(pdfData);
-  // const day = (startTime.getDate() + '').padStart(2, '0');
-  // const month = (startTime.getMonth() + 1 + '').padStart(2, '0');
-  // const year = (startTime.getFullYear() + '').padStart(2, '0');
+ 
   const leftMargin = 50;
   document.setFontSize(9);
   const date = `作成⽇：     ${yearFinalFormate} 年 ${monthFinalFormate} ⽉ ${dateFinalFormate} ⽇`;
