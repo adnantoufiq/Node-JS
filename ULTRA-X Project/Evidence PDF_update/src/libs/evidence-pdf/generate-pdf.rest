@@ -57,3 +57,9 @@ Content-Type: application/json
 
 ###
 GET http://localhost:4560/evidence-pdf/generate-xlsx-file
+
+
+
+###
+
+GET http://localhost:4560/evidence-pdf/download

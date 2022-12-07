@@ -10,10 +10,13 @@ app.use(express.json());
 
 app.use(express.json());
 
-
 app.use("/evidence-pdf", generatePdf);
 
-
+app.use(
+  express.static(
+    __dirname + "./libs/evidence-pdf/Front-end/get-db-information.html"
+  )
+);
 app.listen(4560, () => {
-    console.log(`The app is listening at http://localhost:4560`);
+  console.log(`The app is listening at http://localhost:4560`);
 });

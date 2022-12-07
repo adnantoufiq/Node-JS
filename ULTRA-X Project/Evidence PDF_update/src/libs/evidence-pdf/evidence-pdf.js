@@ -1,5 +1,6 @@
 const express = require("express");
 const generatePdf = express.Router();
+
 const XLSX = require("xlsx");
 const {
   checkEvidencePdfBodyDataValidity,
@@ -12,7 +13,7 @@ const fs = require("fs");
 const path = require("path");
 const { deleteGeneratePDF, pdfName, gettableId } = require("./sql_query/query");
 const { reGeneratePdf } = require("./main/re-generate-pdf");
-const { getTableInfo } = require('./sql_query/query')
+const { getTableInfo } = require("./sql_query/query");
 
 // Author Ariful Islam Toufiq
 // Generate PDF API
@@ -144,19 +145,13 @@ generatePdf.post(
   }
 );
 
-
-
-
-generatePdf.get('/generate-xlsx-file', async (req, res) => {
-
-  
-
-  try{
+generatePdf.get("/generate-xlsx-file", async (req, res) => {
+  try {
     const [result] = await pool.query(getTableInfo);
     const writeSheet = XLSX.utils.json_to_sheet(result);
     const writeBook = XLSX.utils.book_new();
 
-    const dirName = path.join(__dirname, './evidence/')
+    const dirName = path.join(__dirname, "./evidence/");
     XLSX.utils.book_append_sheet(writeBook, writeSheet, "Result");
     //buffer generate
     XLSX.write(writeBook, { bookType: "xlsx", type: "buffer" });
@@ -164,29 +159,22 @@ generatePdf.get('/generate-xlsx-file', async (req, res) => {
     XLSX.write(writeBook, { bookType: "xlsx", type: "binary" });
     // download file
     XLSX.writeFile(writeBook, `${dirName}/evidence-pdf-info.xlsx`);
-    
-    return res.status(500).send({
-      status: "success",
-      message: "generate-evidence-file-xlsx-successfully",
-    });
+    const file = `${dirName}/evidence-pdf-info.xlsx`;
+    res.download(file)
 
+    // return res.status(500).send({
 
-  }catch (error) {
+    //   status: "success",
+    //   message: "generate-evidence-file-xlsx-successfully",
+    // });
+  } catch (error) {
     return res.status(500).send({
+      error,
       status: "failed",
       message: "internal-server-error",
     });
   }
- 
-
-})
-
-
-
-
-
-
-
+});
 
 module.exports = {
   generatePdf,
