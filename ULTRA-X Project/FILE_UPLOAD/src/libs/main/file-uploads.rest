@@ -1,0 +1,5 @@
+###
+POST http://localhost:4560/uploads/image-file
+
+###
+POST http://localhost:4560/uploads/log-file
