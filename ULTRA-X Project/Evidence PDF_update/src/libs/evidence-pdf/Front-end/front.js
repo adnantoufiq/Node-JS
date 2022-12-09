@@ -1,12 +1,7 @@
-const download_file = document.getElementById("download-button");
+const getFile = document.querySelector("#normal");
 
-// download_file.addEventListener("onclick", function () {
-//   const urlFile = "http://localhost:4560/evidence-pdf/generate-xlsx-file";
-//   fetch(urlFile).then(console.log("error"));
-// });
+const urlLink = "http://localhost:4560/evidence-pdf/generate-pdf";
 
-function getData() {
-  const urlFile = "http://localhost:4560/evidence-pdf/generate-xlsx-file";
-
-  fetch(urlFile).then(console.log("success"));
-}
+fetch(urlLink)
+  .then((res) => res.json())
+  .then((data) => console.log(data));

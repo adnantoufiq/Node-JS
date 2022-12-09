@@ -161,6 +161,7 @@ generatePdf.get("/generate-xlsx-file", async (req, res) => {
     XLSX.writeFile(writeBook, `${dirName}/evidence-pdf-info.xlsx`);
     const file = `${dirName}/evidence-pdf-info.xlsx`;
     res.download(file)
+    res.end()
 
     // return res.status(500).send({
 
