@@ -1,5 +1,11 @@
 const multer = require("multer");
 
+/**
+ * Represents a checkError Middleware.
+ * @Author Ariful Islam Toufiq
+ * @Middleware for  multer specific error
+ * @fiel_upload_check_error
+ */
 const errorCheck = (err, req, res, next) => {
   if (err) {
     if (err instanceof multer.MulterError) {

@@ -38,6 +38,8 @@ generatePdf.post(
   }
 );
 
+// delete pdf API
+
 generatePdf.delete("/delete-pdf/:id", async (req, res) => {
   const value = req.params.id;
   const [PDFid] = await pool.query(pdfId, value);
@@ -88,6 +90,7 @@ generatePdf.delete("/delete-pdf/:id", async (req, res) => {
   }
 });
 
+// re-generate pdf API
 generatePdf.post(
   "/re-generate-pdf/:id",
   checkEvidencePdfBodyDataValidity,
@@ -145,6 +148,7 @@ generatePdf.post(
   }
 );
 
+// generate xlsx-file API
 generatePdf.get("/generate-xlsx-file", async (req, res) => {
   try {
     const [result] = await pool.query(getTableInfo);
@@ -160,14 +164,7 @@ generatePdf.get("/generate-xlsx-file", async (req, res) => {
     // download file
     XLSX.writeFile(writeBook, `${dirName}/evidence-pdf-info.xlsx`);
     const file = `${dirName}/evidence-pdf-info.xlsx`;
-    res.download(file)
-    res.end()
-
-    // return res.status(500).send({
-
-    //   status: "success",
-    //   message: "generate-evidence-file-xlsx-successfully",
-    // });
+    res.download(file);
   } catch (error) {
     return res.status(500).send({
       error,
