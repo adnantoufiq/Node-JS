@@ -1,19 +1,17 @@
 //  all import module
-const { generateXLSX } = require("./libs/xlsx-file/generate-xlsx-file");
+const { generatePdf } = require("./libs/main/evidence-pdf");
 
 const express = require("express");
 const app = express();
-
-//app.use(cors());
+const cors = require("cors");
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.json());
 
-
-app.use("/evidence-xlsx", generateXLSX);
-
+app.use("/evidence-pdf", generatePdf);
 
 app.listen(4560, () => {
-    console.log(`The app is listening at http://localhost:4560`);
+  console.log(`The app is listening at http://localhost:4560`);
 });
