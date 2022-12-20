@@ -7,17 +7,10 @@ const {
   secFinalFormate,
 } = require("../dateTimeFormate/formate");
 
-// const getDate = new Date();
-// let day = (getDate.getDate() + '').padStart(2, '0');
-// let month = (getDate.getMonth() + 1 + '').padStart(2, '0');
-// const year = (getDate.getFullYear() + '').padStart(2, '0');
-// let hours = (getDate.getHours() + '').padStart(2, '0');;
-// let minutes = (getDate.getMinutes() + '').padStart(2, '0');
-// let seconds = (getDate.getSeconds() + '').padStart(2, '0');
 const time = `${yearFinalFormate}-${monthFinalFormate}-${dateFinalFormate}   ${hourFinalFormate}:${mntFinalFormate}:${secFinalFormate}`;
+
 const generateEraseData = (pdfData) => {
   const result = [];
-  // console.log("erase Table : " + dat(pdfData.processing_number))
   const rowData1 = {
     column1: "作業年⽉⽇",
     column2: time,

@@ -130,7 +130,7 @@ const writePDF = async (pdfData, document, startTime) => {
 
   //addFooters(document);
 
-  const dirName = path.join(__dirname, "../evidence/");
+  const dirName = path.join(__dirname, "../evidence-PDF/");
 
   // save pdf
   document.save(`${dirName}/Evidence-PDF _ ${pdfData.processing_number}.pdf`);

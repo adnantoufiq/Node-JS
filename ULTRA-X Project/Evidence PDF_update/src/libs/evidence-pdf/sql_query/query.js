@@ -1,10 +1,14 @@
-const insertTableQuery = `INSERT INTO tbl_evidence_information(
-        UXHS_DETAIL_TABLE_ID,
-        FILE_INFORMATION,
-        FILE_NAME,
-        FILE_PATH
-    )
-    VALUES(?, ?, ?, ?)`;
+const insertTableQuery = `
+INSERT INTO tbl_evidence_information(
+  UXHS_DETAIL_TABLE_ID,
+  FILE_INFORMATION,
+  FILE_NAME,
+  FILE_PATH
+)
+VALUES(?, ?, ?, ?)
+
+
+`;
 
 const updateQuery = (columns) => {
   let _query = "UPDATE tbl_evidence_information SET ";
@@ -48,39 +52,54 @@ const updateQuery = (columns) => {
 };
 
 const deleteGeneratePDF = `
-DELETE 
-FROM 
-    tbl_evidence_information 
-WHERE 
+DELETE
+FROM
+    tbl_evidence_information
+WHERE
     ID = ?`;
 
 const pdfName = `
 SELECT
     file_name
 FROM
-tbl_evidence_information
+    tbl_evidence_information
 WHERE
     ID = ?`;
+
 const pdfId = `
-    SELECT
-        id
-    FROM
+SELECT
+    id
+FROM
     tbl_evidence_information
-    WHERE
-        ID = ?`;
+WHERE
+    ID = ?`;
 
 const gettableId = `
-SELECT 
+SELECT
     UXHS_DETAIL_TABLE_ID
-FROM 
+FROM
     tbl_evidence_information
 WHERE
     ID = ?
 `;
 
-const getTableInfo = `SELECT * 
-    FROM 
-tbl_evidence_information`;
+const getTableInfo = `
+SELECT
+    *
+FROM
+    tbl_evidence_information`;
+
+const getSpecificEvidenceInfo = `
+SELECT
+    *
+FROM
+    tbl_evidence_information
+WHERE
+    ID =?
+
+
+`;
+
 module.exports = {
   insertTableQuery,
   deleteGeneratePDF,
@@ -89,4 +108,5 @@ module.exports = {
   gettableId,
   updateQuery,
   getTableInfo,
+  getSpecificEvidenceInfo,
 };

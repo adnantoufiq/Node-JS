@@ -1,20 +1,20 @@
 ###
-DELETE http://localhost:4560/evidence-pdf/delete-pdf/230
+DELETE http://localhost:4560/evidence-pdf/delete-pdf/244
 
 ###
-POST http://localhost:4560/evidence-pdf/re-generate-pdf/229
+POST http://localhost:4560/evidence-pdf/re-generate-pdf/252
 Content-Type: application/json
 
 {
     "pdfData": 
      [
         {
-            "uxsh_detail_table_id":"1",
+            "uxsh_detail_table_id":"4",
             "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
-            "processing_number": "1000",
+            "processing_number": "4",
             "erase_software": "FlashErase LEGACY",
             "erase_method": "Full(0x0000)",
-            "vendor_name": "narshingdi",
+            "vendor_name": "amlabo",
             "manufacturer": "PC-LL570LG",
             "product_serial": "7Z10849CA",
             "disk_model_no": "Unknown ATA Device",
@@ -35,7 +35,7 @@ Content-Type: application/json
     "pdfData": 
   [
     {
-        "uxsh_detail_table_id": "1",
+        "uxsh_detail_table_id": "3",
         "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
         "processing_number": "1",
         "erase_software": "FlashErase LEGACY",
@@ -49,7 +49,7 @@ Content-Type: application/json
         "comment": ""
     },
       {
-        "uxsh_detail_table_id": "2",
+        "uxsh_detail_table_id": "4",
         "company_address": "東京都千代⽥区岩本町3-9-17 スリーセブンビル8F 本町3-9-17 スリーセブンビル8F",
         "processing_number": "2",
         "erase_software": "FlashErase LEGACY",
@@ -71,3 +71,5 @@ Content-Type: application/json
 
 
 
+###
+GET http://localhost:4560/evidence-pdf/generate-xlsx-file/234

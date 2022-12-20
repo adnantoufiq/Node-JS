@@ -5,7 +5,7 @@
  *
  * @copyright All right reserved Ultra-X Asia Pacific
  * 
- * @description This function check the thable data validity
+ * @description This function check the table data validity
  * 
  */
 const checkEvidencePdfBodyDataValidity = (req, res, next) => {

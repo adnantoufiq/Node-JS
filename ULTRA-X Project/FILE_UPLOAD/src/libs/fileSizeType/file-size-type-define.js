@@ -1,4 +1,7 @@
 // image file types
+
+
+
 const _file_types = [
   "image/png",
   "image/jpeg",

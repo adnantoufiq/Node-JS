@@ -1,45 +1,61 @@
 const { pool } = require("../db/pool");
 const fs = require("fs");
 const path = require("path");
-const { deleteGeneratePDF, pdfName } = require("../sql_query/query");
+const {
+  pdfName,
+  gettableId,
+  pdfId,
+} = require("../sql_query/query");
 
-const deletePdf = (value) => {
-  const errors = [];
-  console.log(value);
-  const [name] = pool.query(pdfName, value);
-  const fileName = name[0].pdf_name;
-  const dirName = path.join(__dirname, "/../evidence");
-  const evidencePath = `${dirName}/`;
-  return fs.readdir(dirName, function (err, data) {
-    // check there have any file in directory or not
-    if (err) {
-      console.log("__Error: ", err);
-      return Promise.reject("__directory-is-empty");
-    }
+const checkPdfAndDelete =  async (req,  res, next) => {
+  const value = req.params.id;
+  const [PDFid] = await pool.query(pdfId, value);
 
-    if (data.length === 0) {
-      // return "Directory is empty";
-      return errors.push("Directory-is-empty");
-      // console.log('data', errors)
-    } else {
-      return fs.unlink(evidencePath + fileName, function (err) {
-        // delete file based on file id
 
-        if (err) {
-          // errors.push("File not found");
-          return errors.push("file-not-found");
+  try {
+    if (PDFid && typeof PDFid === "object" && PDFid.length > 0) {
+      const [result] = await pool.query(gettableId, value);
+      const tableId = result[0].UXHS_DETAIL_TABLE_ID;
+      const [name] = await pool.query(pdfName, value);
+      console.log({ name });
+
+      const fileName = name[0].file_name;
+      const evidencePath = path.join(__dirname, "../evidence-PDF/");
+
+      fs.readdir(evidencePath, function (err, data) {
+        if (data.length == 0) {
+          return res.status(404).send({
+            status: "failed",
+            message: "Directory is Empty",
+            err,
+          });
         } else {
-          pool.query(deleteGeneratePDF, value);
-          return errors.push("file-delete-in-db");
+          fs.unlink(evidencePath + fileName, async function (err) {
+            if (err) {
+              return res.status(404).send({
+                status: "failed",
+                message: "file-not-found",
+              });
+            } else {
+               next()
+            }
+          });
         }
       });
-    }  
-   
-   
-  
-  });
-  
+    } else {
+      return res.status(500).send({
+        status: "failed",
+        message: "ID-not-found",
+      });
+    }
+  } catch (error) {
+    return res.status(500).send({
+      status: "failed",
+      message: "internal-server-error",
+    });
+  }
+
 };
 module.exports = {
-  deletePdf,
+  checkPdfAndDelete,
 };

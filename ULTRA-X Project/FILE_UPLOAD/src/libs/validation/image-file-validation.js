@@ -9,10 +9,10 @@ const {
 /**
  * Represents a image validation module.
  * @Author -Ariful_Islam_Toufiq
- * @Image_validation_variable
- * @storage_select
- * @image_type_filter
- * @file_size_limits
+ * Image_validation_variable
+ * storage_select
+ * image_type_filter
+ * file_size_limits
  */
 const imageValidation = multer({
   storage: storage,

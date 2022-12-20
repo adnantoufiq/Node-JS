@@ -10,8 +10,8 @@ const normalize_path_folder = path.normalize(UPLOAD_FOLDER);
 /**
  * Represents a diskStorage and fileName module.
  * @Author Ariful_Islam_Toufiq
- * @file_store_destination
- * @fileName_modification
+ * file_store_destination
+ * fileName_modification
  */
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
